@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question Paper</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        font-family: "Segoe UI";
+        font-family: "Segoe UI";
+        background: rgb(48, 46, 46);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px;
+      }
+
+      .paper {
+        width: 100%;
+        max-width: 800px;
+
+        backdrop-filter: blur(8px);
+        /* background: linear-gradient(
+          135deg,
+          rgb(243, 237, 237),
+          rgb(94, 92, 92)
+        ); */
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      /* .details{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+font-size:14px;
+} */
+
+      #questions {
+        margin-top: 20px;
+        line-height: 1.8;
+        font-size: 18px;
+        padding: 20px;
+        
+        padding: 10px 0;
+      
+      }
+
+      button {
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        background: #ea668e;
+        color: white;
+        border-radius: 6px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btns {
+        text-align: center;
+        margin-top: 20px;
+      }
+      button:hover {
+        background: #5a67d8;
+        cursor: pointer;
+        transform: scale(1.03);
+      }
+
+      /*  MOBILE */
+      @media (max-width: 600px) {
+        body {
+          align-items: flex-start;
+          padding-top: 30px;
+        }
+
+        .paper {
+          padding: 18px;
+        }
+
+        h1 {
+          font-size: 18px;
+        }
+
+        #questions {
+          font-size: 14px;
+        }
+
+        button {
+          width: 100%;
+          margin: 6px 0;
+        }
+      }
+
+      /*TABLET */
+      @media (min-width: 601px) and (max-width: 900px) {
+        .paper {
+          padding: 22px;
+        }
+
+        h1 {
+          font-size: 20px;
+        }
+
+        #questions {
+          font-size: 15px;
+        }
+      }
+      
+ 
+    </style>
+  </head>
+
+  <body>
+    <div class="paper">
+      <div class="header">
+        <h1 id="title"></h1>
+      </div>
+
+      <hr
+        style="color: black; height: 5px; background-color: rgb(197, 139, 139)"
+      />
+
+      <div id="questions"></div>
+
+      <div class="btns">
+         
+        <button onclick="window.location.href = 'question.html'">Back</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="paper.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script> -->
+
+
+  </body>
+</html>

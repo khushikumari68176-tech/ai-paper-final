@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg,#3a4753,#6f257e);
+            font-family: Arial, sans-serif;
+        }
+        .container{
+            background:#fff;
+            width: 100%;
+            max-width: 380px;
+            padding: 25px;
+             border-radius: 14px;
+        box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.63);
+        }
+        input{
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #7a7979;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+        button{
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            background: linear-gradient(135deg,#5c7d9b,#ce58e6);
+            color: white;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        button:hover{
+            background: linear-gradient(135deg, #1b3b49, #4c8292, #30697e);
+        }
+        p{
+            margin-top: 4px;
+        }
+@media(max-width:650px){
+    .container{
+        padding: 20px;
+    }
+    
+}
+    </style>
+</head>
+<body>
+   <div class="container">
+    <h2>Create Account</h2>
+    <input type="text" placeholder="Username" id="newUser">
+    <input type="password" id="newPass" placeholder="Password">
+    <button onclick="signup()">Create Account</button>
+    <p>Already have account? <a href="index.html">Login</a> </p>
+    <p id="msg"></p>
+
+   </div>
+   <script src="script.js"></script>
+
+    
+</body>
+</html>

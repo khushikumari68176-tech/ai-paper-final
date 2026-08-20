@@ -1,0 +1,298 @@
+ 
+      body {
+        margin: 0;
+        font-family: Arial;
+        background: linear-gradient(135deg, #e43871, #9f6496, #802b79);
+      }
+
+      .container {
+        display: flex;
+      }
+
+      .sidebar {
+        width: 220px;
+        background: linear-gradient(135deg, #435668, #6f257e);
+
+        color: white;
+        height: 100vh;
+        padding: 20px;
+        position: relative;
+        transition: 0.4s;
+      }
+      .sidebar h4 {
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .sidebar h4:hover {
+        background: blue;
+      }
+
+      .main {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .nav i {
+        font-size: 25px;
+        color: white;
+        cursor: pointer;
+      }
+
+      /* Cards */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+      }
+
+      .card {
+        background: linear-gradient(135deg, #4897e0, #dd28bc);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.6);
+        color: white;
+      }
+
+      /* Sections */
+      .section {
+        background: linear-gradient(135deg, #435668, #6f257e);
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+      }
+
+      button {
+        background: linear-gradient(135deg, #4b99e2, #dc5af7);
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+        animation: name 0.4s ease-in 0.2s infinite;
+        font-size: 20px;
+      }
+
+      select,
+      button {
+        padding: 12px;
+        margin: 10px 4px;
+        border-radius: 8px;
+        border: none;
+        font-size: 16px;
+      }
+      @keyframes name {
+        0% {
+          background: linear-gradient(
+            135deg,
+            rgb(148, 18, 148),
+            rgb(74, 74, 165),
+            yellow
+          );
+        }
+        50% {
+          background: linear-gradient(
+            135deg,
+            rgb(87, 42, 42),
+            rgb(117, 59, 69),
+            rgb(136, 134, 134)
+          );
+        }
+        100% {
+          background: linear-gradient(
+            135deg,
+            rgb(148, 18, 148),
+            rgb(74, 74, 165),
+            yellow
+          );
+        }
+      }
+      button:hover {
+        transform: scale(1.05);
+      }
+
+      button:active {
+        transform: scale(0.95);
+      }
+
+      .paper-box {
+        background: white;
+        padding: 20px;
+        margin-top: 15px;
+        border-radius: 10px;
+        color: black;
+        max-width: 800px;
+        overflow: auto;
+        word-wrap: break-word;
+      }
+
+      /* ===== MOBILE RESPONSIVE ===== */
+      .nav i {
+        display: none;
+      }
+
+      @media (max-width: 650px) {
+      .topnav{
+gap:15px;
+padding:12px;
+visibility: hidden;
+}
+
+.topnav span{
+font-size:14px;
+}
+        .container {
+          flex-direction: column;
+        }
+        .sidebar {
+          position: fixed;
+          left: -250px;
+          top: 0;
+          height: 100%;
+          transition: 0.3s;
+          z-index: 1000;
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 28px;
+        }
+
+        .nav i {
+          display: block;
+        }
+      }
+
+      /* Overlay */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 999;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+
+
+      /* .topnav{
+display:flex;
+justify-content:space-evenly;
+align-items:center;
+padding:15px 40px;
+} */
+
+.logo{
+font-size:20px;
+font-weight:bold;
+color:#00ffff;
+margin-left: 40px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.nav-links{
+display:flex;
+/* justify-content: space-evenly; */
+gap:30px;
+/* background-color: red; */
+margin-right: 80px;
+justify-content: center;
+align-items: center;
+}
+      /* ===== PREMIUM TOP NAVBAR ===== */
+.topnav{
+width:100%;
+background: rgba(17,17,17,0.6);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+color:white;
+padding:15px 40px;
+position:fixed;
+top:0;
+left:0;
+z-index:2000;
+display:flex;
+justify-content: space-between;
+/* justify-content: flex-end; */
+/* justify-content:flex-end; */
+gap:30px;
+
+
+/* smooth shadow */
+box-shadow:0 8px 25px rgba(0,0,0,0.4);
+
+/* border glow */
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+/* ===== NAV ITEMS ===== */
+.topnav span{
+position:relative;
+cursor:pointer;
+font-size:16px;
+font-weight:500;
+letter-spacing:1px;
+transition:all 0.3s ease;
+padding:8px 10px;
+}
+
+.topnav span>a{
+  text-decoration: none;
+  color: white;
+}
+/* ===== HOVER EFFECT (underline animation) ===== */
+.topnav span::after{
+content:"";
+position:absolute;
+left:0;
+bottom:0;
+width:0%;
+height:2px;
+background:linear-gradient(90deg,#00ffff,#ff00ff);
+transition:0.4s ease;
+border-radius:10px;
+}
+
+.topnav span:hover::after{
+width:100%;
+}
+
+/* ===== TEXT GLOW HOVER ===== */
+.topnav span:hover{
+color:#00ffff;
+transform:translateY(-2px);
+text-shadow:0 0 10px #00ffff;
+}
+
+/* ===== ACTIVE CLICK EFFECT ===== */
+.topnav span:active{
+transform:scale(0.9);
+}
+
+ 
+.sidebar{
+position:fixed;
+top:0;
+left:-270px;
+}
+
+.sidebar.active{
+left:0;
+}
+    a{
+      text-decoration: none ;
+      color: white;
+    }
+
+  

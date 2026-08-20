@@ -1,0 +1,284 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>University Question Paper</title>
+
+<!-- PDF LIBRARIES -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+body{
+margin:0;
+background:#eee;
+font-family:"Times New Roman";
+}
+
+.paper{
+width:800px;
+margin:30px auto;
+background:white;
+padding:20px;
+border:2px solid black;
+line-height:1.8;
+}
+p{
+     font-size: 23px;
+}
+
+/* HEADER */
+.header{
+text-align:center;
+/* border-bottom:2px solid black; */
+/* padding-bottom:10px; */
+margin-bottom:15px;
+}
+
+.section{
+margin-top:20px;
+}
+
+.section-title{
+font-weight:bold;
+border-bottom:2px solid black;
+padding-bottom:5px;
+margin-bottom:10px;
+border-top: 2px solid black;
+text-align: center;
+
+font-size: 21px;
+}
+
+.q{
+margin-left:10px;
+}
+.pdf{
+     
+   
+     text-align: center;
+     margin-top: -20px;
+
+}
+ button{
+ background: linear-gradient(135deg,#4b99e2,#dc5af7);
+color:white;
+cursor:pointer;
+transition:0.3s;
+animation: name 0.4s ease-in 0.2s infinite;
+font-size: 20px;
+padding:12px;
+margin:10px 4px;
+border-radius:8px;
+border:none;
+font-size: 16px;
+
+}
+
+/* PRINT */
+@media print{
+button{display:none;}
+body{background:white;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="paper" class="paper"></div>
+
+<div class="pdf">
+<button onclick="downloadPDF()">Download PDF</button>
+<button onclick="window.print()">Print</button>
+ <button> <a href="dashboard.html" style="text-decoration: none;color: white;">⬅ Back Dashboard</a></button>
+
+
+</div>
+
+<!-- <script>
+
+// 👉 Load data
+let data = JSON.parse(localStorage.getItem("paperData"));
+
+/* ===== HTML DESIGN (UNIVERSITY STYLE) ===== */
+
+let html = `
+<div class="header">
+<h2>Pratice University Type Question Paper</h2>
+<h3>B.Tech Examination 2026-27</h3>
+<h3>Information of Technology</h3>
+<p><b>Subject:</b> ${data.subject}</p>
+<p style="border-bottom:solid black 4px;">[Time: 3 Hours] &nbsp;&nbsp;&nbsp;&nbsp; [Maximum Marks: 75]</p>
+</div>
+<p><b>Note:</b> There are <b>three</b> section <b>(A, B amd C)</b> and candidate has to attempt questions form all sections. Marks are indicated against each section.</p>
+ 
+<div class="section">
+<div class="section-title">SECTION - A (5 × 3 = 15)</a></div>
+ 
+<p><b>Note:</b> Attempt any five questions.</p>
+
+${data.sectionA.map((q,i)=>`<p class="q">Q${i+1}. ${q}</p>`).join("")}
+</div>
+
+<div class="section">
+<div class="section-title">SECTION - B (4 × 5 = 20)</div>
+
+
+<p><b>Note:</b> Attempt any five questions.</p>
+
+${data.sectionB.map((q,i)=>`<p class="q">Q${i+6}. ${q}</p>`).join("")}
+</div>
+
+<div class="section">
+<div class="section-title">SECTION - C (2 × 20  = 40)</div>
+<p><b>Note:</b> Attempt any two questions.</p>
+
+${data.sectionB.map((q,i)=>`<p class="q">Q${i+6}. ${q}</p>`).join("")}
+</div>
+
+<div style="margin-top:40px;">
+<p><b>Note:</b> Attempt all questions.</p>
+</div>
+`;
+
+document.getElementById("paper").innerHTML = html;
+
+
+/* ===== EXACT SAME PDF (HTML → PDF) ===== */
+
+function downloadPDF(){
+
+html2canvas(document.getElementById("paper")).then(canvas => {
+
+const imgData = canvas.toDataURL("image/png");
+
+const { jsPDF } = window.jspdf;
+const pdf = new jsPDF('p','mm','a4');
+
+let imgWidth = 210;
+let pageHeight = 295;
+
+let imgHeight = canvas.height * imgWidth / canvas.width;
+let heightLeft = imgHeight;
+
+let position = 0;
+
+pdf.addImage(imgData,'PNG',0,position,imgWidth,imgHeight);
+heightLeft -= pageHeight;
+
+/* AUTO MULTIPLE PAGE */
+while(heightLeft > 0){
+position = heightLeft - imgHeight;
+pdf.addPage();
+pdf.addImage(imgData,'PNG',0,position,imgWidth,imgHeight);
+heightLeft -= pageHeight;
+}
+
+pdf.save("University_Paper.pdf");
+
+});
+}
+
+</script> -->
+ <script>
+
+// 👉 Load data
+// /let data = JSON.parse(localStorage.getItem("paperData"));
+let data = JSON.parse(sessionStorage.getItem("paperData"));
+let count = 1; // 🔥 GLOBAL QUESTION NUMBER
+
+/* ===== HTML DESIGN (UNIVERSITY STYLE) ===== */
+
+let html = `
+<div class="header">
+<h2>Pratice University Type Question Paper</h2>
+<h3>B.Tech Examination 2026-27</h3>
+<h3>Information Technology</h3>
+<p><b>Subject:</b> ${data.subject}</p>
+<p style="border-bottom:solid black 4px;">[Time: 3 Hours] &nbsp;&nbsp;&nbsp;&nbsp; [Maximum Marks: 75]</p>
+</div>
+
+<p><b>Note:</b> There are <b>three</b> sections <b>(A, B and C)</b> and candidate has to attempt questions from all sections.</p>
+
+<div class="section">
+<div class="section-title">SECTION - A (5 × 3 = 15)</div>
+<p><b>Note:</b> Attempt any five questions.</p>
+
+${data.sectionA.map(q=>{
+let temp = `<p class="q"><b>Q${count}.</b> ${q}</p>`;
+count++;
+return temp;
+}).join("")}
+
+</div>
+
+<div class="section">
+<div class="section-title">SECTION - B (4 × 5 = 20)</div>
+<p><b>Note:</b> Attempt any four questions.</p>
+
+${data.sectionB.map(q=>{
+let temp = `<p class="q"><b>Q${count}.</b> ${q}</p>`;
+count++;
+return temp;
+}).join("")}
+
+</div>
+
+ <div class="section">
+ <div class="section-title">SECTION - C (2 × 20 = 40)</div>
+ <p><b>Note:</b> Attempt any two questions.</p>
+
+ ${data.sectionC.map(q=>{   // 🔥 FIX: sectionC use
+let temp = `<p class="q"><b>Q${count}.</b> ${q}</p>`;
+count++;
+return temp;
+}).join("")}
+
+</div>
+
+<div style="margin-top:40px;">
+<p><b>Note:</b> Attempt all questions.</p>
+</div>
+`;
+
+document.getElementById("paper").innerHTML = html;
+ 
+
+
+/* ===== PDF ===== */
+
+function downloadPDF(){
+
+html2canvas(document.getElementById("paper")).then(canvas => {
+
+const imgData = canvas.toDataURL("image/png");
+
+const { jsPDF } = window.jspdf;
+const pdf = new jsPDF('p','mm','a4');
+
+let imgWidth = 210;
+let pageHeight = 295;
+
+let imgHeight = canvas.height * imgWidth / canvas.width;
+let heightLeft = imgHeight;
+
+let position = 0;
+
+pdf.addImage(imgData,'PNG',0,position,imgWidth,imgHeight);
+heightLeft -= pageHeight;
+
+/* AUTO MULTIPLE PAGE */
+while(heightLeft > 0){
+position = heightLeft - imgHeight;
+pdf.addPage();
+pdf.addImage(imgData,'PNG',0,position,imgWidth,imgHeight);
+heightLeft -= pageHeight;
+}
+
+pdf.save("University_Paper.pdf");
+
+});
+}
+
+</script>
+</body>
+</html>

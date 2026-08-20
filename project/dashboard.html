@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Question Paper Dashboard</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+    
+     
+  </head>
+
+  <body>
+    <!-- <div class="overlay" id="overlay"></div> -->
+ <div class="topnav">
+  <div class="logo">AI Generator</div>
+
+  <div class="nav-links">
+     
+    <span ><a href="pages/about.html">About</a></span>
+    <span  ><a href="pages/help.html">Help</a></span>
+    <span  >    <a href="pages/contact.html">Contact</a>
+</span>
+<span><a href="../practiceDashboard/index.html">Practice Question</a></span>
+<span><a href="../index.html">Log Out</a></span>
+  </div>
+</div>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+        <i class="ri-close-line" id="close" style="font-size: 25px"></i>
+        <h4>🤖 AI Generator</h4>
+        <h4 > <a href="../practiceDashboard/index.html">Practice Set Question</a></h4>
+        <h4><a href="pages/about.html">About</a></h4>
+        <h4><a href="pages/help.html">Help</a></h4>
+        <h4> <a href="pages/contact.html">Contact</a></h4>
+<h4><a href="../index.html">Log Out</a></h4>
+
+      </div>
+
+      <!-- Main -->
+      <div class="main" id="dashboard">
+        <div class="nav">
+          <i class="ri-menu-3-line" id="menu"></i>
+        </div>
+
+        <h1 style="color: white; text-align: center;margin-top: 50px;">
+          AI Question Paper Dashboard
+        </h1>
+
+        <div class="cards">
+          <div class="card">
+            Total Questions All Subject<br />
+            <h2>150</h2>
+          </div>
+          <div class="card">
+            Papers Generated<br />
+            <h2>10</h2>
+          </div>
+          <div class="card">
+            Avg Difficulty<br />
+            <h2>6.3</h2>
+          </div>
+          <div class="card">
+            Subjects<br />
+            <h2>9</h2>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3 style="color: white">Generate Question Paper</h3>
+
+          <select id="subject">
+            <option value="math">Math</option>
+             
+            <option value="os">OS</option>
+            <option value="ds">DS</option>
+            <option value="ai">AI</option>
+           
+            <option value="js">JavaScript</option>
+            <option value="python">Python</option>
+            <option value="de">DE</option>
+            <option value="cn">Computer Network</option>
+            <option value="dbms"> Database Management System</option>
+            <option value="cd">Compiler Design</option>
+            <option value="ml">Machine Learning</option>
+              <option value="english">English Compression</option>
+          </select>
+
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <br />
+
+          <button onclick="generatePaper()">Generate Paper</button>
+          <button onclick="downloadPDF()">Download PDF</button>
+           
+
+          <!-- <div id="paper" class="paper-box"></div> -->
+        </div>
+  
+        <div class="section"  >
+          <h3 style="color: white">Difficulty Distribution</h3>
+          <canvas id="difficultyChart" ></canvas>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+
+    <!-- <script>
+      function openHome(){
+// document.getElementById("topnav").style.display = "none";
+document.getElementById("dashboard").style.display = "block";
+document.getElementById("box").style.display = "block";document.getElementById("box1").style.display = "block";
+document.getElementById("box2").style.display = "block";
+
+ 
+}
+      /* ===== SIDEBAR ===== */
+      let sidebar = document.getElementById("sidebar");
+      let overlay = document.getElementById("overlay");
+
+      document.getElementById("menu").onclick = () => {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+      };
+
+      document.getElementById("close").onclick = () => {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+      };
+
+      overlay.onclick = () => {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+      };
+
+      /* ===== QUESTIONS ===== */
+      const questions = {
+        math: {
+          easy: ["Derivative", "Integration", "Equation"],
+          medium: ["Matrix", "Log", "Series"],
+          hard: ["Laplace", "Fourier", "DE"],
+        },
+        english: {
+          easy: ["Noun", "Verb", "Sentence"],
+          medium: ["Essay", "Letter", "Voice"],
+          hard: ["Speech", "Debate", "Analysis"],
+        },
+        os: {
+          easy: ["OS", "Kernel", "Thread"],
+          medium: ["Paging", "Deadlock", "Scheduling"],
+          hard: ["Banker", "Memory", "Concurrency"],
+        },
+        ds: {
+          easy: ["Array", "Stack", "Queue"],
+          medium: ["Tree", "Sorting", "Recursion"],
+          hard: ["Graph", "DP", "AVL"],
+        },
+        ai: {
+          easy: ["AI", "ML", "Dataset"],
+          medium: ["Regression", "KNN", "Tree"],
+          hard: ["NN", "DL", "Backprop"],
+        },
+        js: {
+          easy: ["Variables", "DOM", "Loop"],
+          medium: ["Events", "API", "Objects"],
+          hard: ["Async", "Closure", "Prototype"],
+        },
+        python: {
+          easy: ["Variables", "Loop", "List"],
+          medium: ["OOP", "File", "Dict"],
+          hard: ["Decorator", "Async", "Thread"],
+        },
+        de: {
+          easy: ["AND", "OR", "NOT"],
+          medium: ["Flipflop", "Kmap", "Mux"],
+          hard: ["ALU", "CPU", "Arch"],
+        },
+        science: {
+          easy: ["Atom", "Force", "Energy"],
+          medium: ["Motion", "Heat", "Electric"],
+          hard: ["Quantum", "Thermo", "Nuclear"],
+        },
+      };
+
+      /* ===== GENERATE ===== */
+
+      function generatePaper() {
+        let subject = document.getElementById("subject").value;
+        let difficulty = document.getElementById("difficulty").value;
+
+        let selected = questions[subject][difficulty];
+
+        function getQ() {
+          return selected[Math.floor(Math.random() * selected.length)];
+        }
+
+        let data = {
+          subject: subject.toUpperCase(),
+
+          sectionA: [getQ(), getQ(), getQ(), getQ(), getQ()],
+          sectionB: [getQ(), getQ(), getQ(), getQ()],
+        };
+
+        localStorage.setItem("paperData", JSON.stringify(data));
+
+        window.open("paper1.html", "_blank");
+      }
+      /* ===== CHART ===== */
+      new Chart(document.getElementById("difficultyChart"), {
+        type: "pie",
+        data: {
+          labels: ["Easy", "Medium", "Hard"],
+          datasets: [{ data: [40, 35, 25] }],
+        },
+      });
+    </script> -->
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact</title>
+<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+<div class="topnav">
+  <a>Contact</a>
+</div>
+
+<div class="page">
+<h1>Contact Us</h1>
+
+<!-- <form class="form">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea placeholder="Your Message"></textarea>
+<button type="submit">Send Message</button>
+</form> -->
+ 
+ <section id="contact" class="card" style="padding: 30px;">
+        
+         <form class="cont-form form" id="contactForm" >
+            <input type="text" placeholder="Your name" id="name" style="grid-column: 1/span2;" required>
+
+            <input type="subject" placeholder="Subject" id="sub">
+
+            <input type="email" placeholder="Email" id="email">
+
+            <textarea name="msg" id="msg" cols="30" rows="10" required placeholder="Message"></textarea>
+
+            <button class="send">Send message</button>
+         </form>
+
+      </section>
+<button> <a href="../dashboard.html" style="text-decoration: none;color: white;">⬅ Back Dashboard</a></button>
+
+ </div>
+<script>
+  
+document.addEventListener("DOMContentLoaded",()=>{
+    let form=document.querySelector("#contactForm");
+    form.addEventListener("submit",(e)=>{
+        e.preventDefault();
+        const subject=document.getElementById("sub");
+        subject.value.trim();
+        const message=document.getElementById("msg").value.trim();
+
+
+// mailto link
+const mailtoLink=`mailto:khushikuamri123@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+window.location.href=mailtoLink;
+
+
+    });
+});
+</script>
+</body>
+</html>
